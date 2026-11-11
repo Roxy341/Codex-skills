@@ -1,0 +1,37 @@
+{
+  "name": "awesome-novel",
+  "version": "4.28.0",
+  "description": "和 AI 协作写小说的工作流系统。从世界观搭建到角色塑造，从章节规划到正文写作，支持 Codex、Claude Code、OpenCode、Reasonix、ZCode、DeepSeek Harness（dsh）和 Grok Build。",
+  "author": {
+    "name": "modoojunko",
+    "url": "https://github.com/modoojunko"
+  },
+  "license": "AGPL-3.0",
+  "pricing": {
+    "tier": "free"
+  },
+  "permissions": [],
+  "dependencies": {},
+  "tags": [
+    "novel",
+    "writing",
+    "creative",
+    "ai",
+    "fiction",
+    "storytelling",
+    "writing-assistant"
+  ],
+  "category": "creative",
+  "openclaw": {
+    "minVersion": "0.50.0"
+  },
+  "repository": "https://github.com/modoojunko/awesome-novel-agent",
+  "files": [
+    "SKILL.md",
+    "skills/",
+    "agents/",
+    "knowledge/",
+    "templates/",
+    "tools/"
+  ]
+}

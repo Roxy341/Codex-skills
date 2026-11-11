@@ -1,0 +1,53 @@
+{
+  "name": "notion",
+  "version": "3.0.8",
+  "description": "Connect Notion to your agent so it works from the same context as your team and other agents. Connect Notion to your agent so it works from the same context as your team and other agents. Search your workspace, create and update pages, manage projects and tasks, and save your work back to Notion.\n\n- **Find answers in your workspace:** Search your pages and databases for answers grounded in your team’s knowledge.\n- **Turn chats into docs:** Save research, plans, specs, and notes as pages your team can review and edit.\n- **Keep projects moving:** Create tasks, update statuses, and add notes to your databases directly from chat.\n- **Share one brain across agents:** Store memories and skills in Notion so your agents follow your preferences and ways of working.",
+  "author": {
+    "name": "Notion"
+  },
+  "interface": {
+    "capabilities": [
+      "Create and edit pages",
+      "Manage projects and tasks",
+      "Search your workspace",
+      "Build databases and dashboards",
+      "Save memories and reuse skills",
+      "Plan your day and manage your calendar",
+      "Find time to meet with coworkers",
+      "Prepare meetings and capture next steps",
+      "Draft PRDs and turn specs into tasks",
+      "Write project updates and keep plans current",
+      "Analyze customer feedback and requests",
+      "Build team wikis and handbooks",
+      "Plan marketing campaigns and content calendars",
+      "Leave comments and suggest edits",
+      "Delegate work to Notion Custom Agents",
+      "Build a CRM for contacts, accounts, and deals",
+      "Track sales pipelines and follow-ups",
+      "Prepare sales calls and account briefs"
+    ],
+    "category": "Productivity",
+    "developerName": "Notion",
+    "displayName": "Notion",
+    "longDescription": "Connect Notion to your agent so it works from the same context as your team and other agents. Connect Notion to your agent so it works from the same context as your team and other agents. Search your workspace, create and update pages, manage projects and tasks, and save your work back to Notion.\n\n- **Find answers in your workspace:** Search your pages and databases for answers grounded in your team’s knowledge.\n- **Turn chats into docs:** Save research, plans, specs, and notes as pages your team can review and edit.\n- **Keep projects moving:** Create tasks, update statuses, and add notes to your databases directly from chat.\n- **Share one brain across agents:** Store memories and skills in Notion so your agents follow your preferences and ways of working.",
+    "privacyPolicyURL": "https://privacycenter.notion.so/policies",
+    "shortDescription": "Create docs, tasks, databases",
+    "supportURL": "https://www.notion.com/help",
+    "termsOfServiceURL": "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac",
+    "websiteURL": "https://www.notion.com/",
+    "logo": "./assets/notion.png",
+    "composerIcon": "./assets/notion.png",
+    "defaultPrompt": [
+      "Create a beautiful weekly planner in Notion with a task board, daily priorities, notes, ideas, and example tasks.",
+      "Help me prepare for an upcoming meeting: research the context and create a Notion meeting note with a tailored agenda.",
+      "Turn an engineering spec or PRD into a Notion project with implementation tasks, milestones, and decisions."
+    ]
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/notion-setup/SKILL.md"
+    }
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

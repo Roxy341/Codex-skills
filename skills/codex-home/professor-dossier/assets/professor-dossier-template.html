@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PROFESSOR_NAME}} | Professor Dossier</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d7dce2;
+      --paper: #f7f8fa;
+      --panel: #ffffff;
+      --nav: #172331;
+      --accent: #275d8c;
+      --green: #2f7658;
+      --amber: #9a5b1f;
+      --red: #9d3434;
+      --blue-soft: #eaf2f8;
+      --green-soft: #eaf5ef;
+      --amber-soft: #fbf0df;
+      --red-soft: #f8e7e7;
+      --shadow: 0 10px 30px rgba(32, 33, 36, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 24px 18px;
+      overflow: auto;
+      background: var(--nav);
+      color: #f8fafc;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #f2c46d;
+      color: var(--nav);
+      font-weight: 800;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    .side-label {
+      margin: 20px 0 8px;
+      color: #a8b3c0;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .side-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #e5edf5;
+      font-size: 14px;
+    }
+
+    .side-list a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: inherit;
+    }
+
+    .side-list a:hover { background: rgba(255, 255, 255, 0.1); text-decoration: none; }
+
+    main {
+      min-width: 0;
+      padding: 28px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .pad { padding: 18px; }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    p { margin: 0 0 10px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 13px; }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .meta strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    .recommendation {
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+      border-top: 5px solid var(--accent);
+    }
+
+    .score {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      color: var(--accent);
+      font-weight: 750;
+    }
+
+    .score.high { background: var(--green-soft); color: var(--green); }
+    .score.medium { background: var(--amber-soft); color: var(--amber); }
+    .score.low, .score.stop { background: var(--red-soft); color: var(--red); }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    section { margin-top: 22px; scroll-margin-top: 16px; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+      font-size: 13px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+    }
+
+    .claim {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .confirmed { background: var(--green-soft); color: var(--green); }
+    .inferred { background: var(--amber-soft); color: var(--amber); }
+    .unknown { background: #eef1f4; color: var(--muted); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: #fbfcfd;
+    }
+
+    .note {
+      padding: 12px;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--blue-soft);
+      color: #1e4668;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; }
+      main { padding: 18px; }
+      .hero, .cols-2, .cols-3, .meta-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand"><div class="mark">PI</div><span>Professor Dossier</span></div>
+      <div class="side-label">Profile</div>
+      <ul class="side-list">
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#research">Research Map</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#funding">Funding</a></li>
+        <li><a href="#lab">Lab Composition</a></li>
+        <li><a href="#student-baseline">PhD Student Baseline</a></li>
+        <li><a href="#recruiting">Recruiting Signals</a></li>
+        <li><a href="#evidence">Evidence Log</a></li>
+      </ul>
+      <div class="side-label">Generated</div>
+      <p class="small muted">{{ACCESS_DATE}}</p>
+    </aside>
+
+    <main>
+      <div class="hero" id="summary">
+        <div class="panel pad">
+          <p class="muted small">{{INSTITUTION}} · {{DEPARTMENT}}</p>
+          <h1>{{PROFESSOR_NAME}}</h1>
+          <p>{{PROFILE_SUMMARY}}</p>
+          <div class="meta-grid">
+            <div class="meta"><span>Rank / Role</span><strong>{{RANK}}</strong></div>
+            <div class="meta"><span>Lab</span><strong>{{LAB_NAME}}</strong></div>
+            <div class="meta"><span>Email</span><strong>{{EMAIL}}</strong></div>
+            <div class="meta"><span>Key Links</span><strong>{{KEY_LINKS}}</strong></div>
+          </div>
+        </div>
+
+        <div class="panel pad recommendation">
+          <div>
+            <h2>Outreach Recommendation</h2>
+            <div class="score {{RECOMMENDATION_CLASS}}">{{RECOMMENDATION}}</div>
+          </div>
+          <p>{{RECOMMENDATION_REASON}}</p>
+          <div class="meta"><span>Confidence</span><strong>{{CONFIDENCE}}</strong></div>
+          <div class="meta"><span>Next Step</span><strong>{{NEXT_STEP}}</strong></div>
+        </div>
+      </div>
+
+      <section id="research" class="panel pad">
+        <h2>Research Map</h2>
+        <div class="grid cols-3">
+          <div>
+            <h3>Themes</h3>
+            <ul class="list">{{RESEARCH_THEMES}}</ul>
+          </div>
+          <div>
+            <h3>Methods / Systems</h3>
+            <ul class="list">{{METHODS_SYSTEMS}}</ul>
+          </div>
+          <div>
+            <h3>Recent Direction Shifts</h3>
+            <ul class="list">{{DIRECTION_SHIFTS}}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" class="panel pad">
+        <h2>Publications</h2>
+        <div class="grid cols-2">
+          <div>
+            <h3>Snapshot</h3>
+            <ul class="list">{{PUBLICATION_SNAPSHOT}}</ul>
+          </div>
+          <div>
+            <h3>High-Signal Papers</h3>
+            <ul class="list">{{HIGH_SIGNAL_PAPERS}}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="funding" class="panel pad">
+        <h2>Funding</h2>
+        <div class="note">{{FUNDING_SUMMARY}}</div>
+        <table>
+          <thead>
+            <tr><th>Source</th><th>Project</th><th>Role</th><th>Dates</th><th>Status</th></tr>
+          </thead>
+          <tbody>{{FUNDING_ROWS}}</tbody>
+        </table>
+      </section>
+
+      <section id="lab" class="panel pad">
+        <h2>Lab Composition</h2>
+        <p class="muted small">Sensitive identity is not inferred. Background reflects public academic/professional information only.</p>
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Public Background</th><th>Evidence Status</th></tr>
+          </thead>
+          <tbody>{{LAB_ROWS}}</tbody>
+        </table>
+      </section>
+
+      <section id="student-baseline" class="panel pad">
+        <h2>PhD Student Baseline</h2>
+        <p class="muted small">Use only public information. Do not treat missing profiles or missing papers as evidence that a student had no prior research record.</p>
+        <div class="grid cols-2">
+          <div>
+            <h3>Visible Pattern</h3>
+            <ul class="list">{{STUDENT_BASELINE_SUMMARY}}</ul>
+          </div>
+          <div>
+            <h3>Interpretation for Applicants</h3>
+            <ul class="list">{{STUDENT_BASELINE_INTERPRETATION}}</ul>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Student</th><th>PhD Stage / Approx. Start</th><th>Prior Institution(s)</th><th>Pre-PhD Publications</th><th>Publication Signal</th><th>Prior Research Experience</th><th>Confidence</th></tr>
+          </thead>
+          <tbody>{{STUDENT_BASELINE_ROWS}}</tbody>
+        </table>
+      </section>
+
+      <section id="recruiting" class="panel pad">
+        <h2>Recruiting and PhD Pathway Signals</h2>
+        <div class="grid cols-2">
+          <div>
+            <h3>Signals Supporting Outreach</h3>
+            <ul class="list">{{POSITIVE_SIGNALS}}</ul>
+          </div>
+          <div>
+            <h3>Risks / Unknowns</h3>
+            <ul class="list">{{RISKS_UNKNOWNS}}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence" class="panel pad">
+        <h2>Evidence Log</h2>
+        <table>
+          <thead>
+            <tr><th>Claim</th><th>Status</th><th>Source</th><th>Access Date</th><th>Notes</th></tr>
+          </thead>
+          <tbody>{{EVIDENCE_ROWS}}</tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

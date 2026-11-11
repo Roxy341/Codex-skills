@@ -1,0 +1,5 @@
+interface:
+  display_name: "Plan marketing campaigns"
+  short_description: "Organize campaigns, content, and production"
+  icon_small: "./assets/notion.png"
+  icon_large: "./assets/notion.png"

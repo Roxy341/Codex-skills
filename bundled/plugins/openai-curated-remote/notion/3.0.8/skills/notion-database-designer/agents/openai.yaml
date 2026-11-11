@@ -1,0 +1,5 @@
+interface:
+  display_name: "Database designer"
+  short_description: "Turn notes, images, and data into trackers, galleries, and charts."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Professor Dossier"
+  short_description: "Research a professor into a citation-backed HTML dossier"
+  default_prompt: "Use $professor-dossier to evaluate a professor for PhD outreach."

@@ -1,0 +1,13 @@
+# .claude/ 只跟踪 agent 定义；settings（含本机权限/凭据）和 scratchpad（一次性草稿）保持忽略
+.claude/settings*.json
+.claude/scratchpad.md
+.vscode/
+tools/__pycache__/
+video/
+video-script-input.md
+.venv/
+.superpowers/
+.mimosa/
+.zcode/
+# 工作交接文档（跨会话手记，不入库）
+handoff.md
